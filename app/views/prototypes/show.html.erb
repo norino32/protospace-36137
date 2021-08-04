@@ -5,10 +5,17 @@
         <%= @prototype.title %>
       </p>
       <%= link_to "by #{@prototype.user.name}", user_path(@prototype.user), class: :prototype__user %>
-      <% if user_signed_in? == @prototype.user %>
+        <li>
+          <%= link_to '詳細', prototype_path(@prototype.id), method: :get %>
+        </li>
+      <% if user_signed_in? && current_user.id == @prototype.user_id %>
         <div class="prototype__manage">
+        <li>
           <%= link_to "編集する", edit_prototype_path(@prototype), class: :prototype__btn %>
+        </li>
+        <li>
           <%= link_to "削除する", prototype_path(@prototype), method: :delete, class: :prototype__btn %>
+        </li>
         </div>
         <% end %> 
       <div class="prototype__image">
